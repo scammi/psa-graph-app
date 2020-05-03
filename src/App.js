@@ -13,9 +13,7 @@ function App() {
           <Col></Col>
           <Col xs={6} className="text-center">
             <h1>PsaGraph</h1>
-            <row className="justify-content-md-center">
-              <AddPatient/>
-            </row>
+            <AddPatient/>
           </Col>
           <Col></Col>
         </Row>

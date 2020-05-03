@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import Tools from "./tools.js"
 import "../App.css";
 
 function Todo({ todo, index, completeTodo, removeTodo }) {
@@ -15,27 +16,6 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
         <Button onClick={() => removeTodo(index)} size="sm">x</Button>
       </div>
     </div>
-  );
-}
-
-function TodoForm({ addTodo }) {
-  const [value, setValue] = useState("");
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue("");
-  };
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Control
-        type="text"
-        className="input mb-2"
-        value={value}
-        onChange={e => setValue(e.target.value)} />
-    </Form>
   );
 }
 
@@ -75,7 +55,7 @@ function AddPatient() {
   return (
     <div className="app">
       <div className="todo-list">
-        <TodoForm addTodo={addTodo} />
+      <Tools addTodo={addTodo} ></Tools>
         {todos.map((todo, index) => (
           <Todo
             key={index}
