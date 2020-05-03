@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Col, Row } from 'react-bootstrap';
+import AddPatient from './components/add_patient.js';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container fluid>
+        <Row>
+          <Col></Col>
+          <Col xs={6} className="text-center">
+            <h1>PsaGraph</h1>
+            <row className="justify-content-md-center">
+              <AddPatient/>
+            </row>
+          </Col>
+          <Col></Col>
+        </Row>
+      </Container>
+
     </div>
   );
 }
