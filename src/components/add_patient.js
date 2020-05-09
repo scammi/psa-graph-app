@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom'; 
+
 import Tools from "./tools.js"
 import "../App.css";
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
+function Todo({ todo, index, showDetalle, removeTodo }) {
   return (
     <div
       className="todo"
@@ -12,8 +14,10 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       {todo.text}
 
       <div>
-        <Button className="mr-1" onClick={() => completeTodo(index)} size="sm">Complete</Button>
-        <Button onClick={() => removeTodo(index)} size="sm">x</Button>
+         <Link to='/tittle'>
+          <Button className="mr-1" onClick={() => showDetalle(index)} size="sm">Detalles</Button>
+         </Link>
+         <Button onClick={() => removeTodo(index)} size="sm">x</Button>
       </div>
     </div>
   );
@@ -40,10 +44,8 @@ function AddPatient() {
     setTodos(newTodos);
   };
 
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
+  const showDetalle = index => {
+    console.log(index)
   };
 
   const removeTodo = index => {
@@ -61,7 +63,7 @@ function AddPatient() {
             key={index}
             index={index}
             todo={todo}
-            completeTodo={completeTodo}
+            showDetalle={showDetalle}
             removeTodo={removeTodo}
           />
         ))}

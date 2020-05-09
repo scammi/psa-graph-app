@@ -11,17 +11,13 @@ function Tools({addTodo}) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
-
-    const handleSubmit = e => {
-      e.preventDefault();
-      if (!value) return;
+    function handleSave(){
       addTodo(value);
-      setValue("");
-    };
-  
+      setShow(false);
+    } 
     return (
-      <Form onSubmit={handleSubmit}>
-
+      <Form>
+          <h1>PsaGraph</h1>
           <Button className="mb-2" onClick={handleShow}>Agregar paciente</Button>
 
           <Modal show={show} onHide={handleClose}>
@@ -39,7 +35,7 @@ function Tools({addTodo}) {
             <Button variant="secondary" onClick={handleClose}>
                 Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={()=>handleSave()}>
                 Save Changes
             </Button>
             </Modal.Footer>
