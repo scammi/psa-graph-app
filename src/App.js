@@ -2,9 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row } from 'react-bootstrap';
 import AddPatient from './components/add_patient.js';
+import Patient from './components/patient.js';
 import {
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'; 
 
 import './App.css';
@@ -15,17 +16,17 @@ function App() {
       <Container fluid>
         <Row>
           <Col></Col>
-          <Col xs={6} className="text-center">   
-          <Switch>
+          <Col xs={6} className="text-center">  
 
-              <Route path="/tittle">
-                <Tittle/>
+          <Switch>
+              <Route path="/tittle/:patient">
+                <Patient/>
               </Route>
               <Route path="/">
                   <AddPatient/>
               </Route>
-
             </Switch>
+
           </Col>
           <Col></Col>
         </Row>
@@ -35,7 +36,4 @@ function App() {
   );
 }
 
-function Tittle(){
-  return <h1>HEY ROUTE TEST</h1> 
-}
 export default App;

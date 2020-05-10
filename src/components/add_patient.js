@@ -6,6 +6,7 @@ import Tools from "./tools.js"
 import "../App.css";
 
 function Todo({ todo, index, showDetalle, removeTodo }) {
+  
   return (
     <div
       className="todo"
@@ -14,8 +15,8 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
       {todo.text}
 
       <div>
-         <Link to='/tittle'>
-          <Button className="mr-1" onClick={() => showDetalle(index)} size="sm">Detalles</Button>
+         <Link to= {`/tittle/${todo.text}`} >
+          <Button className="mr-1" onClick={() => showDetalle()} size="sm">Detalles</Button>
          </Link>
          <Button onClick={() => removeTodo(index)} size="sm">x</Button>
       </div>
@@ -26,15 +27,15 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
 function AddPatient() {
   const [todos, setTodos] = useState([
     {
-      text: "Learn about React",
+      text: "Octavio",
       isCompleted: false
     },
     {
-      text: "Meet friend for lunch",
+      text: "Pedro",
       isCompleted: false
     },
     {
-      text: "Build really cool todo app",
+      text: "Dario",
       isCompleted: false
     }
   ]);
@@ -44,8 +45,8 @@ function AddPatient() {
     setTodos(newTodos);
   };
 
-  const showDetalle = index => {
-    console.log(index)
+  const showDetalle = () => {
+    console.log("works");
   };
 
   const removeTodo = index => {
