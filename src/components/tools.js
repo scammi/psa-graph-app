@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Modal } from 'react-bootstrap';
 import '../App.css';
 
-function Tools({addTodo}) {
+function Tools({add, btnTittle}) {
     const [value, setValue] = useState("");
 
     const [show, setShow] = useState(false);
@@ -12,13 +12,12 @@ function Tools({addTodo}) {
     const handleShow = () => setShow(true);
   
     function handleSave(){
-      addTodo(value);
+      add(value);
       setShow(false);
     } 
     return (
       <Form>
-          <h1>PsaGraph</h1>
-          <Button className="mb-2" onClick={handleShow}>Agregar paciente</Button>
+          <Button className="mb-2" onClick={handleShow}>{btnTittle}</Button>
 
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -46,3 +45,4 @@ function Tools({addTodo}) {
 }
 
 export default Tools;
+  

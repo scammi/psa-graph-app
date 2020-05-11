@@ -58,7 +58,8 @@ function AddPatient() {
   return (
     <div className="app">
       <div className="todo-list">
-      <Tools addTodo={addTodo} ></Tools>
+      <h1>PsaGraph</h1>
+      <Tools add={addTodo} btnTittle="add patient" ></Tools>
         {todos.map((todo, index) => (
           <Todo
             key={index}
