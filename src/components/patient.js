@@ -47,13 +47,13 @@ function Patient() {
     ]);
 
     const addPsaVal = psaVal => {
-        let newPsaData = psaData;
+        const newPsaData = [...psaData];
 
         newPsaData[0].data.push({ "x": moment().format('D/MM/YYYY') ,"y": Number(psaVal) });
+
         setPsaData(newPsaData);
 
         console.log(psaData)
-
     }
 
     return (
