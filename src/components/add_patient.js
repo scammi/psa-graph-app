@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'; 
-
+import firebase from '../firebase.js'
 import Tools from "./tools.js"
 import "../App.css";
 
@@ -12,7 +12,7 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
       className="todo"
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
-      {todo.text}
+      {todo.name}
 
       <div>
          <Link to= {`/tittle/${todo.text}`} >
@@ -26,23 +26,35 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
 
 function AddPatient() {
   const [todos, setTodos] = useState([
-    {
-      text: "Octavio",
-      isCompleted: false
-    },
-    {
-      text: "Pedro",
-      isCompleted: false
-    },
-    {
-      text: "Dario",
-      isCompleted: false
-    }
+    // {
+    //   text: "Octavio",
+    //   isCompleted: false
+    // }
   ]);
 
+  useEffect(()=>{
+    firebase
+    .firestore()
+    .collection('patient')
+    .onSnapshot((snapshot)=>{
+      const fire_patient = snapshot.docs.map((doc)=>({
+        id: doc.id,
+        ...doc.data()
+      }))
+      console.log(fire_patient)
+      setTodos(fire_patient)
+
+
+    })
+  },[])
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
+    
+    firebase.firestore().collection('patient').add({
+      name: text
+    })
+
   };
 
   const showDetalle = () => {
