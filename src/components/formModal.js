@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Modal } from 'react-bootstrap';
 import '../App.css';
 
-function Tools({add, btnTittle}) {
+function FormModal({add, btnTittle}) {
     const [value, setValue] = useState("");
 
     const [show, setShow] = useState(false);
@@ -44,5 +44,5 @@ function Tools({add, btnTittle}) {
     );
 }
 
-export default Tools;
+export default FormModal;
   

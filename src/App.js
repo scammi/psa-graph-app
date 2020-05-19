@@ -19,7 +19,7 @@ function App() {
           <Col xs={6} className="text-center">  
 
           <Switch>
-              <Route path="/tittle/:patient">
+              <Route path="/tittle/:patient_id">
                 <Patient/>
               </Route>
               <Route path="/">

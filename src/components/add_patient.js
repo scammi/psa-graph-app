@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'; 
 import firebase from '../firebase.js'
-import Tools from "./tools.js"
+import FormModal from "./formModal.js"
 import "../App.css";
-
 function Todo({ todo, index, showDetalle, removeTodo }) {
   
   return (
@@ -15,7 +14,7 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
       {todo.name}
 
       <div>
-         <Link to= {`/tittle/${todo.text}`} >
+         <Link to= {`/tittle/${todo.id}`} >
           <Button className="mr-1" onClick={() => showDetalle()} size="sm">Detalles</Button>
          </Link>
          <Button onClick={() => removeTodo(index)} size="sm">x</Button>
@@ -44,9 +43,9 @@ function AddPatient() {
       console.log(fire_patient)
       setTodos(fire_patient)
 
-
     })
   },[])
+
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
@@ -71,7 +70,7 @@ function AddPatient() {
     <div className="app">
       <div className="todo-list">
       <h1>PsaGraph</h1>
-      <Tools add={addTodo} btnTittle="add patient" ></Tools>
+      <FormModal add={addTodo} btnTittle="add patient" ></FormModal>
         {todos.map((todo, index) => (
           <Todo
             key={index}
