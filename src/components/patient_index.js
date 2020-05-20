@@ -23,7 +23,7 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
   );
 }
 
-function AddPatient() {
+function PatientIndex() {
   const [todos, setTodos] = useState([
     // {
     //   text: "Octavio",
@@ -57,7 +57,6 @@ function AddPatient() {
   };
 
   const showDetalle = () => {
-    console.log("works");
   };
 
   const removeTodo = index => {
@@ -85,4 +84,4 @@ function AddPatient() {
   );
 }
 
-export default AddPatient;
+export default PatientIndex;

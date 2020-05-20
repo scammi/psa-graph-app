@@ -21,7 +21,7 @@
   justify-content: space-between;
 }
 
-#patientChart {
-  width: 1100px;
+#psaGraph {
+  width: 750px;
   height: 500px;
 }

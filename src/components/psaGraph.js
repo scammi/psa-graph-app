@@ -3,18 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ResponsiveLine } from '@nivo/line'
 import '../App.css';
 
-function PatientChart({ psaData }) {
+function PsaGraph({ psaData }) {
     const [value, setValue] = useState(psaData);
     // This will launch only if propName value has chaged.
     useEffect(() => {
-        console.log('i have change')
         setValue(psaData)
 
     }, [psaData]
     );
 
     return (
-        <div id="patientChart">
+        <div id="psaGraph">
 
             <ResponsiveLine
                 data={psaData}
@@ -81,4 +80,4 @@ function PatientChart({ psaData }) {
     );
 }
 
-export default PatientChart;
+export default PsaGraph;

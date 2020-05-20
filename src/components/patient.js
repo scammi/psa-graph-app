@@ -5,9 +5,10 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../firebase.js'
 import { useParams } from "react-router-dom";
 import moment from 'moment';
-import PatientChart from './patientChart.js';
+import PsaGraph from './psaGraph.js';
 import FormModal from './formModal.js';
 import { firestore } from 'firebase';
+
 
 function Patient() {
     let { patient_id } = useParams();
@@ -47,19 +48,20 @@ function Patient() {
           ]
         }
     ]);
+    
+    var docRef = firebase.firestore().collection(`patient/${patient_id}/psa/`).doc('psa');
 
-    useEffect(()=> {
-      firebase
-        .firestore()
-        .collection(`patient/${patient_id}/psa`)
-        .onSnapshot((snapshot) => {
-          const chart_data = snapshot.docs.map((doc)=>({
-            mgr: doc.mgr,
-
-          }))
-          console.log("mgr", chart_data);
-        })
-    })
+      docRef.get().then(function(doc) {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+ 
     const addPsaVal = psaVal => {
         const newPsaData = [...psaData];
 
@@ -70,7 +72,7 @@ function Patient() {
     return (
         <div>
             <h1> {patient_id} </h1> 
-            <PatientChart psaData={psaData}/>
+            <PsaGraph psaData={psaData}/>
             <FormModal add={addPsaVal} btnTittle="Add psa"/>
 
         </div>

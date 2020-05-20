@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row } from 'react-bootstrap';
-import AddPatient from './components/add_patient.js';
+import PatientIndex from './components/patient_index.js';
 import Patient from './components/patient.js';
 import {
   Switch,
@@ -23,7 +23,7 @@ function App() {
                 <Patient/>
               </Route>
               <Route path="/">
-                  <AddPatient/>
+                  <PatientIndex/>
               </Route>
             </Switch>
 
