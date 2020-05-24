@@ -16,58 +16,40 @@ function Patient() {
         {
           "id": "PSA",
           "color": "hsl(330, 70%, 50%)",
-          "data": [
-            {
-              "x": "10/05/2020",
-              "y": 261
-            },
-            {
-              "x": "10/06/2020",
-              "y": 272
-            },
-            {
-              "x": "10/07/2020",
-              "y": 276
-            },
-            {
-              "x": "10/08/2020",
-              "y": 289
-            },
-            {
-              "x": "10/9/2020",
-              "y": 137
-            },
-            {
-              "x": "10/22/2020",
-              "y": 145
-            },
-            {
-              "x": "11/1/2020",
-              "y": 281
-            }
-          ]
+          "data": []
         }
     ]);
-    
-    var docRef = firebase.firestore().collection(`patient/${patient_id}/psa/`).doc('psa');
 
-      docRef.get().then(function(doc) {
-          if (doc.exists) {
-              console.log("Document data:", doc.data());
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-          }
-      }).catch(function(error) {
-          console.log("Error getting document:", error);
-      });
+    var docRef = firebase.firestore().collection(`patient/${patient_id}/psa/`).doc("psa");
+    
+    //When the element is loaded get psa data from store.
+    useEffect(()=>{
+       docRef.get().then((doc)=> { 
+         const newPsaData = [...psaData];
+
+         if(doc.data()){
+          let graph_data_store = doc.data();
+
+          graph_data_store.newPsaData[0].data.forEach(element => {
+            newPsaData[0].data.push(element);
+          });
+          setPsaData(newPsaData);
+         }
+        
+      })
+    },[])
  
     const addPsaVal = psaVal => {
         const newPsaData = [...psaData];
 
-        newPsaData[0].data.push({ "x": moment().format('D/MM/YYYY') ,"y": Number(psaVal) });
-        setPsaData(newPsaData)
-    }
+        var new_study_result = { "x": moment().format('D/MM/YYYY,  h:mm:ss a') ,"y": Number(psaVal) };
+        newPsaData[0].data.push(new_study_result);
+        
+        //add new point to database and graph
+        setPsaData(newPsaData);
+        docRef.set({newPsaData});
+
+      }
 
     return (
         <div>
