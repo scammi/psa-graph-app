@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ResponsiveLine } from '@nivo/line'
+import moment from 'moment';
 import '../App.css';
 
 function PsaGraph({ psaData }) {
@@ -14,22 +15,22 @@ function PsaGraph({ psaData }) {
 
     return (
         <div id="psaGraph">
-
             <ResponsiveLine
                 data={psaData}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-                xScale={{ type: 'point' }}
+                margin={{ top: 15, right: 110, bottom: 50, left: 60 }}
+                xScale={{ type: 'point'}}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+                curve="catmullRom"
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
                     orient: 'bottom',
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: 'transportation',
-                    legendOffset: 36,
-                    legendPosition: 'middle'
+                    format: function(value){ 
+                        return moment(value).format('MM-DD-YY');
+                    },
+                    legend: "xLegend",
+                    legendPosition: "middle",
+                    legendOffset: 34
                 }}
                 axisLeft={{
                     orient: 'left',
@@ -40,25 +41,26 @@ function PsaGraph({ psaData }) {
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
-                colors={{ scheme: 'category10' }}
-                lineWidth={4}
+                colors={{ scheme: 'nivo' }}
+                lineWidth={6}
                 pointSize={10}
-                pointColor={{ theme: 'background' }}
+                pointColor={{ from: 'color', modifiers: [] }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}
                 pointLabel="y"
                 pointLabelYOffset={-12}
+                areaOpacity={0.25}
                 useMesh={true}
                 legends={[
                     {
-                        anchor: 'bottom-right',
-                        direction: 'column',
+                        anchor: 'top-left',
+                        direction: 'row',
                         justify: false,
-                        translateX: 100,
+                        translateX: 23,
                         translateY: 0,
                         itemsSpacing: 0,
                         itemDirection: 'left-to-right',
-                        itemWidth: 80,
+                        itemWidth: 84,
                         itemHeight: 20,
                         itemOpacity: 0.75,
                         symbolSize: 12,

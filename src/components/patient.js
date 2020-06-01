@@ -7,11 +7,12 @@ import { useParams } from "react-router-dom";
 import moment from 'moment';
 import PsaGraph from './psaGraph.js';
 import FormModal from './formModal.js';
+import Jumbotron from 'react-bootstrap/Jumbotron'
 import { firestore } from 'firebase';
 
 
 function Patient() {
-    let { patient_id } = useParams();
+    let { patient_id, patient_name } = useParams();
     let [psaData, setPsaData ] = useState([
         {
           "id": "PSA",
@@ -42,7 +43,7 @@ function Patient() {
     const addPsaVal = psaVal => {
         const newPsaData = [...psaData];
 
-        var new_study_result = { "x": moment().format('D/MM/YYYY,  h:mm:ss a') ,"y": Number(psaVal) };
+        var new_study_result = { "x": moment().format('D/MM/YYYY,  h:mm:ss') ,"y": Number(psaVal) };
         newPsaData[0].data.push(new_study_result);
         
         //add new point to database and graph
@@ -52,12 +53,13 @@ function Patient() {
       }
 
     return (
-        <div>
-          
-            <h1> {patient_id} </h1> 
+        <div className="mt-2">
+          <Jumbotron fluid>
+            <h1> {patient_name} </h1> 
             <PsaGraph psaData={psaData}/>
             <FormModal add={addPsaVal} btnTittle="Add psa"/>
 
+          </Jumbotron>
         </div>
     );
 }

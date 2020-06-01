@@ -39,10 +39,6 @@
 }
 
 #psaGraph {
-  width: 750px;
+  width: 700px;
   height: 500px;
-}
-
-#add_btn{
-  display: inline;
 }

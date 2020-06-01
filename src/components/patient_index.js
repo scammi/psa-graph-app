@@ -15,7 +15,7 @@ function Todo({ todo, index, showDetalle, removeTodo }) {
       {todo.name}
 
       <div>
-         <Link to= {`/tittle/${todo.id}`} >
+         <Link to= {`/tittle/${todo.id}/${todo.name}`} >
           <Button className="mr-1" onClick={() => showDetalle()} size="sm">Detalles</Button>
          </Link>
          <Button onClick={() => removeTodo(index)} size="sm">x</Button>
