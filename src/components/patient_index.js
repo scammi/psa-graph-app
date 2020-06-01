@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link } from 'react-router-dom'; 
 import firebase from '../firebase.js'
 import FormModal from "./formModal.js"
 import "../App.css";
+
 function Todo({ todo, index, showDetalle, removeTodo }) {
   
   return (
@@ -67,9 +68,14 @@ function PatientIndex() {
 
   return (
     <div className="app">
+      <h1 id="logo">PsaGraph</h1>
+      
+      <div id="search_add">
+          <input id="search_patient" type="text" value={"Buscar"} />
+          <FormModal add={addTodo} btnTittle="add patient"></FormModal>
+      </div>
+
       <div className="todo-list">
-      <h1>PsaGraph</h1>
-      <FormModal add={addTodo} btnTittle="add patient" ></FormModal>
         {todos.map((todo, index) => (
           <Todo
             key={index}
@@ -79,6 +85,7 @@ function PatientIndex() {
             removeTodo={removeTodo}
           />
         ))}
+
       </div>
     </div>
   );

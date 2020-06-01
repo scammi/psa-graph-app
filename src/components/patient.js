@@ -53,6 +53,7 @@ function Patient() {
 
     return (
         <div>
+          
             <h1> {patient_id} </h1> 
             <PsaGraph psaData={psaData}/>
             <FormModal add={addPsaVal} btnTittle="Add psa"/>

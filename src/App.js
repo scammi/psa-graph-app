@@ -16,7 +16,7 @@ function App() {
       <Container fluid>
         <Row>
           <Col></Col>
-          <Col xs={6} className="text-center">  
+          <Col xs={4} className="text-center">  
 
           <Switch>
               <Route path="/tittle/:patient_id">

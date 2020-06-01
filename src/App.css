@@ -3,6 +3,23 @@
   height: 100vh;
 }
 
+#logo{
+  text-align: left;
+}
+
+#search_add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: .3rem;
+}
+
+#search_patient{
+  width: 70%;
+}
 .todo-list {
   background: #e8e8e8;
   border-radius: 4px;
@@ -24,4 +41,8 @@
 #psaGraph {
   width: 750px;
   height: 500px;
+}
+
+#add_btn{
+  display: inline;
 }
