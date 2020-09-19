@@ -26,11 +26,12 @@ function PsaGraph({ psaData }) {
                 axisBottom={{
                     orient: 'bottom',
                     format: function(value){ 
-                        return moment(value).format('MM-DD-YY');
+                        return moment(value).format('MM-DD');
                     },
-                    legend: "xLegend",
+                    legend: "Time",
                     legendPosition: "middle",
-                    legendOffset: 34
+                    legendOffset: 34,
+                    tickValues: 'every 1 week',
                 }}
                 axisLeft={{
                     orient: 'left',
